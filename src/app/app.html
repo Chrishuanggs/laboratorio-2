@@ -1,4 +1,26 @@
 <main>
+    <header class="bg-indigo-700 text-white shadow">
+        <nav class="flex flex-wrap items-center gap-4 px-4 py-3">
+            <span class="text-xl font-bold mr-4">Tienda</span>
+
+            @if (authService.estaAutenticado()) {
+                <a routerLink="/productos" routerLinkActive="underline" class="hover:underline">Productos</a>
+                <a routerLink="/categorias" routerLinkActive="underline" class="hover:underline">Categorías</a>
+
+                <!-- Usuarios solo se muestra al administrador -->
+                @if (authService.esAdmin()) {
+                    <a routerLink="/usuarios" routerLinkActive="underline" class="hover:underline">Usuarios</a>
+                }
+
+                <span class="ml-auto text-sm">{{ authService.obtenerUsername() }} ({{ authService.obtenerRol() }})</span>
+                <button type="button" (click)="authService.cerrarSesion()" class="bg-white text-indigo-700 rounded px-3 py-1 hover:bg-indigo-100">Cerrar sesión</button>
+            } @else {
+                <a routerLink="/login" routerLinkActive="underline" class="ml-auto hover:underline">Iniciar sesión</a>
+                <a routerLink="/registro" routerLinkActive="underline" class="hover:underline">Registrarse</a>
+            }
+        </nav>
+    </header>
+
     <section class="p-4">
         <router-outlet />
     </section>
