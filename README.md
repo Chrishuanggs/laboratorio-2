@@ -1,59 +1,43 @@
-# InterfazProyecto3
+# Laboratorio 2 - CRUD front-end
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.2.
+**Estudiante:** Chris Huang
+**Curso:** Proyecto 3 - CENFOTEC
 
-## Development server
+Aplicación en Angular que consume la API del Laboratorio 1 (productos y categorías) con login por Keycloak.
 
-To start a local development server, run:
+## Funcionalidades
+- Inicio de sesión y registro de usuarios (el registro crea el usuario en Keycloak con rol USER).
+- Interceptor que agrega `Authorization: Bearer <token>` a cada request.
+- Listado de productos y categorías para cualquier usuario con sesión.
+- Crear, editar y eliminar productos y categorías solo con `SUPER-ADMIN-ROLE`.
+- Página de usuarios registrados solo para `SUPER-ADMIN-ROLE`.
 
+## Requisitos
+- Docker Desktop
+- Java 25
+- Node.js 22.22 o superior (Angular 22 no corre con Node 20)
+
+## Cómo correrlo
+
+### 1. Backend (Laboratorio 1, rama `lab2`)
+1. En la carpeta `docker` del backend ejecutar:
+   `docker compose up -d`
+   Si Keycloak ya estaba creado de antes, usar `docker compose up -d --force-recreate keycloak` para que importe el realm actualizado (trae el cliente `persistencia-admin` que se usa para registrar y listar usuarios).
+2. Esperar a que Keycloak arranque (http://localhost:8180).
+3. Ejecutar `PersistenciaApplication` desde el IDE. Corre en http://localhost:8080.
+
+### 2. Frontend
 ```bash
-ng serve
+npm install
+npm start
 ```
+Abrir http://localhost:4200.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Usuarios de prueba
 
-## Code scaffolding
+| Usuario | Contraseña | Rol |
+|---|---|---|
+| admin | admin123 | SUPER-ADMIN-ROLE |
+| chris | user123 | USER |
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+También se puede crear un usuario nuevo desde la página de registro.
