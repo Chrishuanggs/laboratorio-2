@@ -19,7 +19,14 @@ Aplicación en Angular que consume la API del Laboratorio 1 (productos y categor
 
 ## Cómo correrlo
 
-### 1. Backend (Laboratorio 1, rama `lab2`)
+### 1. Backend
+El backend es el del Laboratorio 1 con los endpoints de registro y listado de usuarios agregados. Está en este repositorio:
+https://github.com/Chrishuanggs/laboratorio-2-backend.git
+
+```bash
+git clone https://github.com/Chrishuanggs/laboratorio-2-backend.git
+```
+
 1. En la carpeta `docker` del backend ejecutar:
    `docker compose up -d`
    Si Keycloak ya estaba creado de antes, usar `docker compose up -d --force-recreate keycloak` para que importe el realm actualizado (trae el cliente `persistencia-admin` que se usa para registrar y listar usuarios).
