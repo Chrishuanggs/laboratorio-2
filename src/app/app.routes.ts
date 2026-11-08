@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Login } from './login/login';
 import { Registro } from './registro/registro';
 import { Categorias } from './categorias/categorias';
+import { Productos } from './productos/productos';
 import { CategoriaForm } from './categoria-form/categoria-form';
 import { adminGuard, authGuard } from './guards/auth-guard';
 
@@ -33,6 +34,12 @@ export const routes: Routes = [
         component: CategoriaForm,
         title: 'Editar categoría',
         canActivate: [adminGuard]
+    },
+    {
+        path: 'productos',
+        component: Productos,
+        title: 'Productos',
+        canActivate: [authGuard]
     }
 
 ];
