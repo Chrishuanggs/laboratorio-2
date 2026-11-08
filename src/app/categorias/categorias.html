@@ -1,0 +1,44 @@
+<section>
+    <div class="flex items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold">Categorías</h1>
+        @if (authService.esAdmin()) {
+            <a routerLink="/categorias/nueva" class="bg-indigo-600 text-white rounded px-4 py-2 hover:bg-indigo-700">Nueva categoría</a>
+        }
+    </div>
+
+    @if (error()) {
+        <p class="bg-red-100 text-red-700 p-2 rounded mb-4">{{ error() }}</p>
+    }
+
+    <table class="w-full border border-gray-200 bg-white">
+        <thead class="bg-gray-100 text-left">
+            <tr>
+                <th class="p-2">Id</th>
+                <th class="p-2">Nombre</th>
+                <th class="p-2">Descripción</th>
+                @if (authService.esAdmin()) {
+                    <th class="p-2">Acciones</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (categoria of categorias(); track categoria.id) {
+                <tr class="border-t">
+                    <td class="p-2">{{ categoria.id }}</td>
+                    <td class="p-2">{{ categoria.nombre }}</td>
+                    <td class="p-2">{{ categoria.descripcion }}</td>
+                    @if (authService.esAdmin()) {
+                        <td class="p-2 flex gap-2">
+                            <a [routerLink]="['/categorias/editar', categoria.id]" class="bg-yellow-500 text-white rounded px-3 py-1 hover:bg-yellow-600">Editar</a>
+                            <button type="button" (click)="eliminar(categoria)" class="bg-red-600 text-white rounded px-3 py-1 hover:bg-red-700">Eliminar</button>
+                        </td>
+                    }
+                </tr>
+            } @empty {
+                <tr>
+                    <td colspan="4" class="p-2 text-center text-gray-500">No hay categorías registradas</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

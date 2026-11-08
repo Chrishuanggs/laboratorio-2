@@ -1,6 +1,8 @@
 import { Routes } from '@angular/router';
 import { Login } from './login/login';
 import { Registro } from './registro/registro';
+import { Categorias } from './categorias/categorias';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     {
@@ -12,6 +14,12 @@ export const routes: Routes = [
         path: 'registro',
         component: Registro,
         title: 'Registro'
+    },
+    {
+        path: 'categorias',
+        component: Categorias,
+        title: 'Categorías',
+        canActivate: [authGuard]
     }
 
 ];
