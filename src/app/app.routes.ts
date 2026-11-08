@@ -5,6 +5,7 @@ import { Categorias } from './categorias/categorias';
 import { Productos } from './productos/productos';
 import { ProductoForm } from './producto-form/producto-form';
 import { CategoriaForm } from './categoria-form/categoria-form';
+import { Usuarios } from './usuarios/usuarios';
 import { adminGuard, authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
@@ -53,6 +54,21 @@ export const routes: Routes = [
         component: ProductoForm,
         title: 'Editar producto',
         canActivate: [adminGuard]
+    },
+    {
+        path: 'usuarios',
+        component: Usuarios,
+        title: 'Usuarios',
+        canActivate: [adminGuard]
+    },
+    {
+        path: '',
+        redirectTo: 'productos',
+        pathMatch: 'full'
+    },
+    {
+        path: '**',
+        redirectTo: 'productos'
     }
 
 ];
