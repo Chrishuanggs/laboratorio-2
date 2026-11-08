@@ -1,0 +1,19 @@
+<section class="max-w-sm mx-auto mt-10 bg-white border border-gray-200 rounded-lg shadow p-6">
+    <h1 class="text-2xl font-bold mb-4">Iniciar sesión</h1>
+
+    @if (error()) {
+        <p class="bg-red-100 text-red-700 p-2 rounded mb-4">{{ error() }}</p>
+    }
+
+    <form [formGroup]="loginForm" (submit)="iniciarSesion()" class="flex flex-col gap-3">
+        <label for="username">Usuario</label>
+        <input id="username" type="text" formControlName="username" class="border rounded p-2" />
+
+        <label for="password">Contraseña</label>
+        <input id="password" type="password" formControlName="password" class="border rounded p-2" />
+
+        <button type="submit" class="bg-indigo-600 text-white rounded p-2 mt-2 hover:bg-indigo-700">Entrar</button>
+    </form>
+
+    <p class="mt-4 text-sm">¿No tiene cuenta? <a routerLink="/registro" class="text-indigo-600 underline">Registrarse</a></p>
+</section>
